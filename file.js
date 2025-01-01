@@ -1,21 +1,30 @@
-const fs = require('fs')
+const fs = require("fs");
 
-//read file text
+//read file text synchronous
 
 // const readText = fs.readFileSync('./texts/read.txt', 'utf-8');
 // console.log(readText);
 
-//asyanchronous 
+// read text asynchronous
 
-fs.readFile('./texts/read.txt','utf-8',(err,data)=>{
-    if(err){
-        throw err;
+fs.readFile("./texts/read.txt", "utf-8", (err, data) => {
+  if (err) {
+    throw err;
+  }
+  console.log(data);
+  fs.writeFile("./texts/read2.txt", data, "utf-8", (err) => {
+    if (err) {
+      throw err;
     }
-    console.log(data);
-})
+  });
+});
 
+// write text asynchronous
 
-// readFile('/etc/passwd', (err, data) => {
-//     if (err) throw err;
-//     console.log(data);
-//   }); 
+// fs.writeFile('./texts/read2.txt',data, 'utf-8', (err)=>{
+//     if(err){
+//         throw err;
+//     }
+// })
+
+console.log("testing asynchronous");
